@@ -33,8 +33,6 @@
 //   },
 // };
 
-
-
 window.VoiceAI = {
   init(config = {}) {
     console.log("RestaurantAI Started", config);
@@ -47,7 +45,20 @@ window.VoiceAI = {
 
     const icon = document.createElement("div");
     icon.id = "voice-icon";
-    icon.innerHTML = "🎙️";
+    icon.innerHTML = `<svg
+    width="28"
+    height="28"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="white"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round">
+  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+  <path d="M19 10a7 7 0 0 1-14 0"/>
+  <path d="M12 19v4"/>
+  <path d="M8 23h8"/>
+</svg>`;
 
     button.appendChild(icon);
     box.appendChild(button);
@@ -56,7 +67,20 @@ window.VoiceAI = {
     let started = false;
 
     function showIdle() {
-      icon.innerHTML = "🎙️";
+      icon.innerHTML = `<svg
+    width="28"
+    height="28"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="white"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round">
+  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+  <path d="M19 10a7 7 0 0 1-14 0"/>
+  <path d="M12 19v4"/>
+  <path d="M8 23h8"/>
+</svg>`;
     }
 
     function showListening() {
@@ -89,8 +113,6 @@ window.VoiceAI = {
     window.addEventListener("message", (event) => {
       console.log("Received message:", event.data);
       if (event.data?.type !== "VOICE_AI_STATE") return;
-
-      
 
       switch (event.data.state) {
         case "idle":
