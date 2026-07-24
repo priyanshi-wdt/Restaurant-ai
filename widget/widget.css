@@ -1,5 +1,10 @@
+/* #box{
+background-color: red;
+align-items: center;
+justify-content: center;
+}
+
 #ai-button {
-  position: fixed;
   right: 25px;
   bottom: 25px;
   width: 60px;
@@ -8,4 +13,137 @@
   font-size: 28px;
   cursor: pointer;
   z-index: 99999;
+} */
+
+
+/* #box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+#ai-button {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+
+  background: white;
+} */
+
+
+
+
+
+#box{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:999999;
+}
+
+#ai-button{
+    width:70px;
+    height:70px;
+    border:none;
+    border-radius:50%;
+    background:#e6673d;
+    color:#fff;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#voice-icon{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:100%;
+}
+
+/* User speaking */
+
+.equalizer{
+    display:flex;
+    gap:4px;
+}
+
+.equalizer span{
+    width:4px;
+    background:#fff;
+    border-radius:10px;
+    animation:bars .45s infinite alternate;
+}
+
+.equalizer span:nth-child(1){animation-delay:0s;}
+.equalizer span:nth-child(2){animation-delay:.1s;}
+.equalizer span:nth-child(3){animation-delay:.2s;}
+.equalizer span:nth-child(4){animation-delay:.3s;}
+
+@keyframes bars{
+    from{
+        height:8px;
+    }
+    to{
+        height:24px;
+    }
+}
+
+/* AI Speaking */
+
+.speaker{
+    display:flex;
+    gap:6px;
+}
+
+.speaker span{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#fff;
+    animation:pulse .8s infinite;
+}
+
+.speaker span:nth-child(2){
+    animation-delay:.2s;
+}
+
+.speaker span:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(.6);
+        opacity:.4;
+    }
+    100%{
+        transform:scale(1.5);
+        opacity:1;
+    }
+}
+
+/* Listening */
+
+.listening-ring{
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    border:3px solid white;
+    animation:ring 1s infinite;
+}
+
+@keyframes ring{
+    0%{
+        transform:scale(.8);
+        opacity:1;
+    }
+    100%{
+        transform:scale(1.4);
+        opacity:0;
+    }
 }

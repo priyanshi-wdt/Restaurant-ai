@@ -11,19 +11,39 @@ export default function VoiceAssistant() {
     startConversation,
   } = useConversation();
 
-  function getStatus() {
-    if (!connected) return "🔴 Disconnected";
-    if (speaking) return "🔊 AI Speaking...";
-    if (listening) return "🎤 Listening...";
-    return "😴 Waiting...";
-  }
+  console.log('started',started,connected,speaking,listening,messages);
+  
+
+  // function getStatus() {
+  //   if (!connected) return "🔴 Disconnected";
+  //   if (speaking) return "🔊 AI Speaking...";
+  //   if (listening) return "🎤 Listening...";
+  //   return "😴 Waiting...";
+  // }
 
   useEffect(() => {
-
     startConversation();
+  }, []);
 
-}, []);
+  useEffect(() => {
+  let state = "idle";
 
+  if (speaking) {
+    state = "ai-speaking";
+  } else if (listening) {
+    state = "user-speaking";
+  }
+
+  console.log("Sending to parent:", state);
+
+  window.parent.postMessage(
+    {
+      type: "VOICE_AI_STATE",
+      state,
+    },
+    "*"
+  );
+}, [speaking, listening]);
   return (
     <div
       style={{
@@ -34,7 +54,7 @@ export default function VoiceAssistant() {
     >
       <h1>Restaurant Voice AI</h1>
 
-      <h3>{getStatus()}</h3>
+      {/* <h3>{getStatus()}</h3> */}
 
       {/* {!started && (
         <button
@@ -48,7 +68,6 @@ export default function VoiceAssistant() {
           🎤 Start Conversation
         </button>
       )} */}
-
     </div>
   );
 }
