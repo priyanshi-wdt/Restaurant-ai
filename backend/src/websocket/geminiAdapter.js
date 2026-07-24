@@ -1,6 +1,5 @@
 const { GoogleGenAI } = require("@google/genai");
 const conversationStore = require("../services/conversationStore");
-// const solarPrompt = require("../prompts/solarPrompt");
 const buildPrompt = require("../prompts/buildPrompt");
 const { getCompany } = require("../services/companyService");
 
@@ -73,19 +72,6 @@ class GeminiAdapter {
           },
         },
         systemInstruction: prompt,
-        //         systemInstruction: `
-        // You are ABC Solar's AI Voice Receptionist.
-
-        // Behavior:
-        // - Always greet first.
-        // - Introduce yourself.
-        // - Speak naturally.
-        // - Keep responses short.
-        // - Ask only one question at a time.
-        // - Remember previous answers.
-        // - If user interrupts you, immediately stop speaking.
-        // - If user says wait, pause until they continue.
-        // `,
       },
 
       callbacks: {

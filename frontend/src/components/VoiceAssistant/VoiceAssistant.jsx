@@ -32,7 +32,7 @@ export default function VoiceAssistant() {
         padding: "20px",
       }}
     >
-      <h1>Solar Voice AI</h1>
+      <h1>Restaurant Voice AI</h1>
 
       <h3>{getStatus()}</h3>
 
