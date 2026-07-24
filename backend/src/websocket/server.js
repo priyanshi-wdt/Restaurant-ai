@@ -9,6 +9,8 @@ const GeminiAdapter = require("./geminiAdapter");
 
 const { handleAudioMessage } = require("./audioRouter");
 
+const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
+
 function startWebSocketServer(server) {
   // connectDB()
   //   .then(async () => {
@@ -47,7 +49,7 @@ function startWebSocketServer(server) {
   wss.on("connection", (socket,request) => {
     const url = new URL(
         request.url,
-        "http://localhost"
+        CLIENT_URL
     );
 
 
