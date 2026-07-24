@@ -9,9 +9,9 @@ window.VoiceAI = {
     const button = document.createElement("button");
     button.id = "ai-button";
 
-    const p = document.createElement("p")
-    p.id = "ai-name"
-    p.innerHTML = "Talk with Emily";
+    const p=document.createElement("p")
+    p.id="ai-name"
+    p.innerHTML="Talk with Emily";
 
     const icon = document.createElement("div");
     icon.id = "voice-icon";
@@ -36,7 +36,7 @@ window.VoiceAI = {
     container.appendChild(box);
 
     let iframe = null;
-    let started = false;
+let started = false;
 
     function showIdle() {
       icon.innerHTML = `<svg
@@ -106,35 +106,35 @@ window.VoiceAI = {
     });
 
 
-    button.onclick = () => {
+button.onclick = () => {
 
-      if (!started) {
+  if (!started) {
 
-        started = true;
+    started = true;
 
-        iframe = document.createElement("iframe");
+    iframe = document.createElement("iframe");
 
-        iframe.style.display = "none";
-        iframe.allow = "microphone";
+    iframe.style.display = "none";
+    iframe.allow = "microphone";
 
-        iframe.src =
-          `https://restaurant-ai-qp3u.vercel.app/?companyId=${config.companyId}`;
+    iframe.src =
+      `https://restaurant-ai-qp3u.vercel.app/?companyId=${config.companyId}`;
 
-        document.body.appendChild(iframe);
+    document.body.appendChild(iframe);
 
-      } else {
+  } else {
 
-        started = false;
+    started = false;
 
-        iframe.contentWindow.postMessage(
-          {
-            type: "VOICE_AI_END",
-          },
-          "*"
-        );
+    iframe.contentWindow.postMessage(
+      {
+        type: "VOICE_AI_END",
+      },
+      "*"
+    );
 
-      }
+  }
 
-    };
+};
   },
 };

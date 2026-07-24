@@ -55,13 +55,13 @@ class GeminiAdapter {
         inputAudioTranscription: {},
         outputAudioTranscription: {},
 
-        // speechConfig: {
-        //   voiceConfig: {
-        //     prebuiltVoiceConfig: {
-        //       voiceName: "Puck"
-        //     }
-        //   }
-        // },
+        speechConfig: {
+          voiceConfig: {
+            prebuiltVoiceConfig: {
+              voiceName: "Sulafat"
+            }
+          }
+        },
 
         realtimeInputConfig: {
           automaticActivityDetection: {
