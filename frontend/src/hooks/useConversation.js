@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 
 import conversationManager from "../conversation/conversationManager";
+import { stopAudio } from "../audio/audioPlayer";
 
 import {
   connectWebSocket,
   startSession,
+  disconnectWebSocket
 } from "../services/websocket";
 
-import { startWorklet } from "../audio/worklet";
+import { startWorklet, stopWorklet } from "../audio/worklet";
 
 export default function useConversation() {
 
@@ -54,12 +56,19 @@ export default function useConversation() {
 
   }
 
+  function endConversation() {
+    stopAudio();                  // Stop AI voice immediately
+    stopWorklet();                // Stop microphone
+    disconnectWebSocket();        // Disconnect backend
+
+    conversationManager.clearMessages();
+    conversationManager.stopConversation();
+}
+
   return {
-
     ...state,
-
     startConversation,
-
+    endConversation,
   };
 
 }

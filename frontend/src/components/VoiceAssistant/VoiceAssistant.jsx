@@ -9,6 +9,7 @@ export default function VoiceAssistant() {
     speaking,
     messages,
     startConversation,
+    endConversation
   } = useConversation();
 
   console.log('started',started,connected,speaking,listening,messages);
@@ -24,6 +25,21 @@ export default function VoiceAssistant() {
   useEffect(() => {
     startConversation();
   }, []);
+
+  
+useEffect(() => {
+  function handleMessage(event) {
+    if (event.data?.type === "VOICE_AI_END") {
+      endConversation();
+    }
+  }
+
+  window.addEventListener("message", handleMessage);
+
+  return () =>
+    window.removeEventListener("message", handleMessage);
+}, []);
+
 
   useEffect(() => {
   let state = "idle";
@@ -44,6 +60,8 @@ export default function VoiceAssistant() {
     "*"
   );
 }, [speaking, listening]);
+
+
   return (
     <div
       style={{

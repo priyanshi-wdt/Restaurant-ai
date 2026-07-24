@@ -1,47 +1,9 @@
-/* #box{
-background-color: red;
-align-items: center;
-justify-content: center;
-}
-
-#ai-button {
-  right: 25px;
-  bottom: 25px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  font-size: 28px;
-  cursor: pointer;
-  z-index: 99999;
-} */
-
-
-/* #box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 80px;
-}
-
-#ai-button {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  font-size: 28px;
-  cursor: pointer;
-
-  background: white;
-} */
-
-
-
-
-
 #box{
    display: flex;
    justify-content: center;
    align-items: center;
    margin-top: 50px;
+   flex-direction: column;
 }
 
 #ai-button{

@@ -1,47 +1,17 @@
-// window.VoiceAI = {
-//   init(config = {}) {
-//     console.log("RestaurantAI Started", config);
-
-//     const div=document.createElement("div")
-//     div.id="box"
-
-//     const button = document.createElement("button");
-//     button.id = "ai-button";
-//     button.innerHTML = "🎙️";
-
-//     // Add button to container
-//     div.appendChild(button);
-
-//     // Add container to page
-//     document.body.appendChild(div);
-
-//     let started = false;
-
-//     button.onclick = () => {
-//       if (started) return;
-
-//       started = true;
-
-//       const iframe = document.createElement("iframe");
-//       iframe.style.display = "none";
-//       iframe.allow = "microphone";
-
-//       iframe.src = `https://restaurant-ai-qp3u.vercel.app/?companyId=${config.companyId}`;
-
-//       document.body.appendChild(iframe);
-//     };
-//   },
-// };
-
 window.VoiceAI = {
   init(config = {}) {
     console.log("RestaurantAI Started", config);
+    const container = config.container || document.body;
 
     const box = document.createElement("div");
     box.id = "box";
 
     const button = document.createElement("button");
     button.id = "ai-button";
+
+    const p = document.createElement("p")
+    p.id = "ai-name"
+    p.innerHTML = "Talk with Emily";
 
     const icon = document.createElement("div");
     icon.id = "voice-icon";
@@ -62,8 +32,10 @@ window.VoiceAI = {
 
     button.appendChild(icon);
     box.appendChild(button);
-    document.body.appendChild(box);
+    box.appendChild(p)
+    container.appendChild(box);
 
+    let iframe = null;
     let started = false;
 
     function showIdle() {
@@ -133,19 +105,36 @@ window.VoiceAI = {
       }
     });
 
+
     button.onclick = () => {
-      if (started) return;
 
-      started = true;
+      if (!started) {
 
-      const iframe = document.createElement("iframe");
+        started = true;
 
-      iframe.style.display = "none";
-      iframe.allow = "microphone";
+        iframe = document.createElement("iframe");
 
-      iframe.src = `https://restaurant-ai-qp3u.vercel.app/?companyId=${config.companyId}`;
+        iframe.style.display = "none";
+        iframe.allow = "microphone";
 
-      document.body.appendChild(iframe);
+        iframe.src =
+          `https://restaurant-ai-qp3u.vercel.app/?companyId=${config.companyId}`;
+
+        document.body.appendChild(iframe);
+
+      } else {
+
+        started = false;
+
+        iframe.contentWindow.postMessage(
+          {
+            type: "VOICE_AI_END",
+          },
+          "*"
+        );
+
+      }
+
     };
   },
 };

@@ -122,6 +122,16 @@ export function startSession() {
   );
 }
 
+export function stopSession() {
+  if (!socket) return;
+
+  socket.send(
+    JSON.stringify({
+      type: "STOP_SESSION",
+    })
+  );
+}
+
 // ----------------------------
 // Close
 // ----------------------------
