@@ -34,7 +34,7 @@ window.SolarAI = {
             iframe.allow = "microphone";
 
             iframe.src =
-                "http://localhost:5173?companyId="
+                "http://restaurant-ai-qp3u.vercel.app/?companyId="
                 +
                 config.companyId;
 

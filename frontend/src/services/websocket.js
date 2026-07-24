@@ -11,7 +11,7 @@ export async function connectWebSocket() {
       return;
     }
 
-    socket = new WebSocket("ws://localhost:5000?companyId=" + companyId);
+    socket = new WebSocket("wss://restaurant-ai-urh5.onrender.com?companyId=" + companyId);
 
     socket.binaryType = "arraybuffer";
 
